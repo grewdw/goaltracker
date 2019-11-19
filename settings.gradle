@@ -1,0 +1,6 @@
+rootProject.name = 'goaltracker'
+include 'configuration'
+include 'application'
+include 'persistence'
+include 'web'
+include 'domain'
