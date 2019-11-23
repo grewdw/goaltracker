@@ -2,12 +2,12 @@ package uk.me.davidgrew.goaltracker.web.form;
 
 import java.time.Instant;
 
-public class TaskRecord {
+public class TaskRecordForm {
 
   private int count;
-  private Instant recordInstant;
+  private Instant time;
 
-  private TaskRecord() {
+  private TaskRecordForm() {
     //for Jackson serialisation
   }
 
@@ -15,7 +15,7 @@ public class TaskRecord {
     return count;
   }
 
-  public Instant getRecordInstant() {
-    return recordInstant;
+  public Instant getTime() {
+    return time;
   }
 }

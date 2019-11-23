@@ -22,6 +22,9 @@ public class TaskEntity {
   @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
   private List<TaskTargetEntity> targets;
 
+  @OneToMany(mappedBy = "task")
+  private List<TaskRecordEntity> records;
+
   public TaskEntity() {
   }
 
@@ -41,5 +44,9 @@ public class TaskEntity {
 
   public List<TaskTargetEntity> getTargets() {
     return targets;
+  }
+
+  public List<TaskRecordEntity> getRecords() {
+    return records;
   }
 }

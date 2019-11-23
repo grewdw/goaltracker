@@ -3,13 +3,13 @@ package uk.me.davidgrew.goaltracker.web.form;
 import uk.me.davidgrew.goaltracker.domain.task.TargetDirection;
 import uk.me.davidgrew.goaltracker.domain.task.TargetPeriod;
 
-public class NewTaskTarget {
+public class NewTaskTargetForm {
 
   private TargetPeriod period;
   private TargetDirection direction;
   private int count;
 
-  private NewTaskTarget() {
+  private NewTaskTargetForm() {
     //for Jackson serialisation
   }
 

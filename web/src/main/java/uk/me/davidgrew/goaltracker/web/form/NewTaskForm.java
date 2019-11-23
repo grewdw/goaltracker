@@ -2,12 +2,12 @@ package uk.me.davidgrew.goaltracker.web.form;
 
 import java.util.List;
 
-public class NewTask {
+public class NewTaskForm {
 
   private String taskName;
-  private List<NewTaskTarget> targets;
+  private List<NewTaskTargetForm> targets;
 
-  private NewTask() {
+  private NewTaskForm() {
     //for Jackson serialisation
   }
 
@@ -15,7 +15,7 @@ public class NewTask {
     return taskName;
   }
 
-  public List<NewTaskTarget> getTargets() {
+  public List<NewTaskTargetForm> getTargets() {
     return targets;
   }
 }
