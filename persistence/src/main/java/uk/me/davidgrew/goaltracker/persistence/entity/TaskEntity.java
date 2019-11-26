@@ -31,7 +31,7 @@ public class TaskEntity {
   public TaskEntity(String name, List<TaskTargetEntity> targets) {
     this.name = name;
     this.targets = targets;
-    targets.stream().forEach(target -> target.setTaskEntity(this));
+    targets.forEach(target -> target.setTaskEntity(this));
   }
 
   public Long getId() {
