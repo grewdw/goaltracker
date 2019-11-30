@@ -10,7 +10,7 @@ public interface TaskRepository {
 
   boolean taskExists(long id);
 
-  void createTask(Task task);
+  long createTask(Task task);
 
   void addTaskRecord(long taskId, TaskRecord record);
 }

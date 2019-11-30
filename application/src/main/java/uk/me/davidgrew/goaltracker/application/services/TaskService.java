@@ -5,7 +5,7 @@ import uk.me.davidgrew.goaltracker.domain.task.TaskRecord;
 
 public interface TaskService {
 
-  void createTask(Task task);
+  long createTask(Task task);
 
   void addTaskRecord(long taskId, TaskRecord taskRecord);
 }

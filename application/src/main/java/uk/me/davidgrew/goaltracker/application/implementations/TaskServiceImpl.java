@@ -16,12 +16,12 @@ public class TaskServiceImpl implements TaskService {
   private TaskRepository taskRepository;
 
   @Override
-  public void createTask(Task task) {
+  public long createTask(Task task) {
     if (containsDuplicateTargets(task)
       || taskRepository.getTask(task.getName()).isPresent()) {
       throw new IllegalArgumentException();
     }
-    taskRepository.createTask(task);
+    return taskRepository.createTask(task);
   }
 
   @Override

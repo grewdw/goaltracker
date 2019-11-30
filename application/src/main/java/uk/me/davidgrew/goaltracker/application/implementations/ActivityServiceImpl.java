@@ -2,22 +2,26 @@ package uk.me.davidgrew.goaltracker.application.implementations;
 
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import uk.me.davidgrew.goaltracker.application.respositories.ActivityRepository;
 import uk.me.davidgrew.goaltracker.application.services.ActivityService;
 import uk.me.davidgrew.goaltracker.domain.task.Activity;
 import uk.me.davidgrew.goaltracker.domain.task.ActivityRecord;
 
+@Service
 public class ActivityServiceImpl implements ActivityService {
+
+  private static final String UNRECORDED = "Unrecorded";
 
   @Autowired
   private ActivityRepository activityRepository;
 
   @Override
-  public void createActivity(Activity activity) {
-    if (activityRepository.activityExists(activity.getName())) {
+  public long createActivity(Activity activity) {
+    if (activityRepository.findByName(activity.getName()).isPresent()) {
       throw new IllegalArgumentException();
     } else {
-      activityRepository.createActivity(activity);
+      return activityRepository.createActivity(activity);
     }
   }
 
@@ -30,5 +34,12 @@ public class ActivityServiceImpl implements ActivityService {
         new ActivityRecord(latest.getId(), latest.getStart(), now)));
 
     activityRepository.createActivityRecord(activityId, new ActivityRecord(now, null));
+  }
+
+  @Override
+  public void stopActivity() {
+    startActivity(activityRepository.findByName(UNRECORDED)
+      .map(Activity::getId)
+      .orElseGet(() -> createActivity(new Activity(UNRECORDED))));
   }
 }

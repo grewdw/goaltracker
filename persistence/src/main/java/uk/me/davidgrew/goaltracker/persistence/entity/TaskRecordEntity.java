@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class TaskRecordEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private int count;
   private Instant time;

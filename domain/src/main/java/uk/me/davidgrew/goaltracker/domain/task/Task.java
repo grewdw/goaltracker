@@ -1,6 +1,9 @@
 package uk.me.davidgrew.goaltracker.domain.task;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.util.StringUtils;
 
 public class Task {
 
@@ -14,7 +17,9 @@ public class Task {
   }
 
   public Task(String name, List<TaskTarget> targets) {
-    this.name = name;
+    this.name = Arrays.stream(name.stripLeading().stripTrailing().toLowerCase().split(" "))
+      .map(StringUtils::capitalize)
+      .collect(Collectors.joining(" "));
     this.targets = targets;
   }
 

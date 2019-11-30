@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,11 +13,12 @@ import javax.persistence.Table;
 public class ActivityEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
 
+  @OneToMany(mappedBy = "activity")
   private List<ActivityRecordEntity> activityRecords;
 
   private ActivityEntity() {
@@ -25,7 +27,6 @@ public class ActivityEntity {
   public ActivityEntity(String name, List<ActivityRecordEntity> activityRecords) {
     this.name = name;
     this.activityRecords = activityRecords;
-    activityRecords.forEach(record -> record.setActivity(this));
   }
 
   public Long getId() {

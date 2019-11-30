@@ -35,8 +35,8 @@ public class TaskRepositoryImpl implements TaskRepository {
   }
 
   @Override
-  public void createTask(Task task) {
-    taskJpaRepository.save(taskTransformer.toNewEntity(task));
+  public long createTask(Task task) {
+    return taskJpaRepository.save(taskTransformer.toNewEntity(task)).getId();
   }
 
   @Override

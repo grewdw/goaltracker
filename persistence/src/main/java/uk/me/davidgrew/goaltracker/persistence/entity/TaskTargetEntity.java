@@ -15,22 +15,21 @@ import uk.me.davidgrew.goaltracker.domain.task.TargetPeriod;
 public class TaskTargetEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private TargetPeriod period;
   private TargetDirection direction;
   private int count;
   private boolean current;
 
-  //  @JoinColumn(name = "task_id", nullable = false)
-//  @OnDelete(action = OnDeleteAction.CASCADE)
   @ManyToOne(fetch = FetchType.LAZY)
   private TaskEntity task;
 
   public TaskTargetEntity() {
   }
 
-  public TaskTargetEntity(TargetPeriod period, TargetDirection direction, int count, boolean current) {
+  public TaskTargetEntity(TargetPeriod period, TargetDirection direction, int count,
+    boolean current) {
     this.period = period;
     this.direction = direction;
     this.count = count;

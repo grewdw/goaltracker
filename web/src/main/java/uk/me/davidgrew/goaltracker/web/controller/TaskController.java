@@ -29,8 +29,8 @@ public class TaskController {
       .map(target -> new TaskTarget(target.getPeriod(), target.getDirection(), target.getCount(),
         true))
       .collect(Collectors.toList());
-    taskService.createTask(new Task(newTaskForm.getTaskName(), targets));
-    return ResponseEntity.status(OK).build();
+    long id = taskService.createTask(new Task(newTaskForm.getTaskName(), targets));
+    return ResponseEntity.status(OK).body(id);
   }
 
   @PostMapping("/task/{id}/record")

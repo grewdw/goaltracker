@@ -9,7 +9,8 @@ public class ActivityRecord {
   private Instant end;
 
   public ActivityRecord(long id, Instant start, Instant end) {
-    this(start, end);
+    this.id = id;
+    this.start = start;
     this.end = end;
   }
 

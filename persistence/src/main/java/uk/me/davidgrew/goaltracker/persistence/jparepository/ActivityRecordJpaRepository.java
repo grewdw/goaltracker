@@ -5,4 +5,5 @@ import uk.me.davidgrew.goaltracker.persistence.entity.ActivityRecordEntity;
 
 public interface ActivityRecordJpaRepository extends CrudRepository<ActivityRecordEntity, Long> {
 
+  ActivityRecordEntity findTopByOrderByStartDesc();
 }

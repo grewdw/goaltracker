@@ -6,9 +6,9 @@ import uk.me.davidgrew.goaltracker.domain.task.ActivityRecord;
 
 public interface ActivityRepository {
 
-  boolean activityExists(String name);
+  Optional<Activity> findByName(String name);
 
-  void createActivity(Activity activity);
+  long createActivity(Activity activity);
 
   Optional<ActivityRecord> getLatestActivityRecord();
 
