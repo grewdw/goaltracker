@@ -1,7 +1,10 @@
 package uk.me.davidgrew.goaltracker.persistence.repository;
 
+import java.time.Instant;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uk.me.davidgrew.goaltracker.application.respositories.ActivityRepository;
@@ -26,9 +29,29 @@ public class ActivityRepositoryImpl implements ActivityRepository {
   private ActivityTransformer activityTransformer;
 
   @Override
-  public Optional<Activity> findByName(String name) {
+  public List<Activity> getAllActivities() {
+    return activityJpaRepository.findAll().stream()
+      .map(activityTransformer::fromEntity)
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public Optional<Activity> findActivityByName(String name) {
     return Optional.ofNullable(activityJpaRepository.findByName(name))
       .map(activityTransformer::fromEntity);
+  }
+
+  @Override
+  public Optional<Activity> findActivityById(long id) {
+    return activityJpaRepository.findById(id)
+      .map(activityTransformer::fromEntity);
+  }
+
+  @Override
+  public List<ActivityRecord> findActivitiesDuringPeriod(Instant periodStart, Instant periodEnd) {
+    return activityRecordJpaRepository.findActivitiesDuringPeriod(periodStart, periodEnd)
+      .stream().map(e -> new ActivityRecord(e.getId(), e.getStart(), e.getEnd()))
+      .collect(Collectors.toList());
   }
 
   @Override

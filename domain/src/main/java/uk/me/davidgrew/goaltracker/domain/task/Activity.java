@@ -1,20 +1,20 @@
 package uk.me.davidgrew.goaltracker.domain.task;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.util.StringUtils;
 
 public class Activity {
 
+  @JsonProperty("id")
   private long id;
+  @JsonProperty("name")
   private String name;
-  private List<ActivityRecord> activityRecords;
 
-  public Activity(long id, String name, List<ActivityRecord> activityRecords) {
+  public Activity(long id, String name) {
     this.id = id;
     this.name = name;
-    this.activityRecords = activityRecords;
   }
 
   public Activity(String name) {
@@ -30,9 +30,5 @@ public class Activity {
 
   public String getName() {
     return name;
-  }
-
-  public List<ActivityRecord> getActivityRecords() {
-    return activityRecords;
   }
 }
